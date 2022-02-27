@@ -111,7 +111,12 @@ async function cleffa() {
     throw err;
   }
 
-  const runtime = new kame.Runtime();
+  const kameForCurrentNode = kame.configure({
+    loader: (filename: string) =>
+      kame.defaultLoader.load(filename, { targets: { node: "current" } }),
+  });
+
+  const runtime = new kameForCurrentNode.Runtime();
   const targetMod = runtime.load(absolutePathToTargetFilePath);
 
   const mainFn = targetMod.__esModule
