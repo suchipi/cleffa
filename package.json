@@ -1,0 +1,42 @@
+{
+  "name": "cleffa",
+  "version": "0.1.0",
+  "description": "CLI utility that parses argv and passes it into the default export of a file",
+  "main": "dist/index.js",
+  "bin": "dist/index.js",
+  "scripts": {
+    "build": "tsc && chmod +x ./dist/index.js"
+  },
+  "keywords": [
+    "cli",
+    "argv",
+    "parse",
+    "flag",
+    "run",
+    "main",
+    "exit",
+    "exitCode",
+    "status",
+    "async",
+    "Promise",
+    "throw",
+    "Error",
+    "reject"
+  ],
+  "author": "Lily Scott <me@suchipi.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^17.0.21",
+    "prettier": "^2.5.1",
+    "typescript": "^4.5.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/suchipi/cleffa.git"
+  },
+  "dependencies": {
+    "change-case": "^4.1.2",
+    "kame": "^0.7.0",
+    "pretty-print-error": "^1.1.0"
+  }
+}
