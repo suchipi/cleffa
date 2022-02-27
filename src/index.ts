@@ -115,7 +115,7 @@ async function cleffa() {
   const targetMod = runtime.load(absolutePathToTargetFilePath);
 
   const mainFn = targetMod.__esModule
-    ? targetMod.default
+    ? targetMod.default || targetMod.main
     : targetMod || targetMod.main;
 
   if (typeof mainFn !== "function") {
