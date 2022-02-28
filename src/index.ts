@@ -1,58 +1,11 @@
 #!/usr/bin/env node
 import path from "path";
-import * as changeCase from "change-case";
 import { formatError } from "pretty-print-error";
+import { parseArgv } from "clef-parse";
 import * as kame from "kame";
 
 async function cleffa() {
-  const argv = process.argv.slice(2);
-
-  const options: any = {};
-  const positionalArgs: Array<any> = [];
-
-  let isAfterDoubleDash = false;
-  while (argv.length > 0) {
-    let item = argv.shift();
-    if (!item) break;
-
-    if (item === "--") {
-      isAfterDoubleDash = true;
-      continue;
-    }
-
-    if (item.startsWith("-")) {
-      if (isAfterDoubleDash) {
-        positionalArgs.push(item);
-      } else {
-        const propertyName = changeCase.camelCase(item.replace(/^-{1,2}/, ""));
-        let propertyValue: string | number | boolean | null | undefined = null;
-
-        const nextValue = argv[0];
-        if (nextValue === "true" || nextValue === "false") {
-          argv.shift();
-          propertyValue = nextValue === "true";
-        } else if (nextValue == null || nextValue.startsWith("-")) {
-          propertyValue = true;
-        } else if (nextValue === "null") {
-          argv.shift();
-          propertyValue = null;
-        } else if (nextValue === "undefined") {
-          argv.shift();
-          propertyValue = undefined;
-        } else if (nextValue === String(Number(nextValue))) {
-          argv.shift();
-          propertyValue = Number(nextValue);
-        } else {
-          argv.shift();
-          propertyValue = nextValue;
-        }
-
-        options[propertyName] = propertyValue;
-      }
-    } else {
-      positionalArgs.push(item);
-    }
-  }
+  const { options, positionalArgs } = parseArgv();
 
   const nextPositionalArg = positionalArgs[0];
   const targetFilePath =
@@ -81,7 +34,6 @@ async function cleffa() {
 
   let absolutePathToTargetFilePath: string | null = null;
 
-  let pathThatWorked: string | null = null;
   let resolveError: Error | null = null;
   for (const pathToTry of pathsToTry) {
     try {
@@ -89,7 +41,6 @@ async function cleffa() {
         pathToTry,
         path.join(process.cwd(), "<cleffa-entrypoint>")
       );
-      pathThatWorked = pathToTry;
       break;
     } catch (err) {
       resolveError = err as Error;
@@ -117,29 +68,20 @@ async function cleffa() {
   });
 
   const runtime = new kameForCurrentNode.Runtime();
+
+  // In case they don't want to use a main function
+  global.options = options;
+  global.args = positionalArgs;
+
   const targetMod = runtime.load(absolutePathToTargetFilePath);
 
   const mainFn = targetMod.__esModule
     ? targetMod.default || targetMod.main
     : targetMod || targetMod.main;
 
-  if (typeof mainFn !== "function") {
-    const err = new Error(
-      `'${pathThatWorked}' didn't export a function to call. It should export the function as either the default export, a named export called \`main\`, or by setting \`module.exports\` to the function.`
-    );
-    Object.assign(err, {
-      "example export syntax that would work": [
-        "export default function main() {}",
-        "export function main() {}",
-        "export const main = () => {}",
-        "module.exports = function main() {}",
-        "exports.main = function main() {}",
-      ],
-    });
-    throw err;
+  if (typeof mainFn === "function") {
+    await mainFn(options, ...positionalArgs);
   }
-
-  await mainFn(options, ...positionalArgs);
 }
 
 cleffa().catch((err) => {
