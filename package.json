@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "clef-parse": "^0.1.1",
-    "kame": "^0.8.1",
+    "kame": "^0.8.2",
     "pretty-print-error": "^1.1.0"
   }
 }
