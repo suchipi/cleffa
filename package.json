@@ -35,8 +35,8 @@
     "url": "https://github.com/suchipi/cleffa.git"
   },
   "dependencies": {
-    "clef-parse": "^0.1.1",
-    "kame": "^0.8.2",
-    "pretty-print-error": "^1.1.0"
+    "clef-parse": "^0.1.2",
+    "kame": "^0.8.3",
+    "pretty-print-error": "^1.1.1"
   }
 }
