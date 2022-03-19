@@ -1,6 +1,6 @@
 {
   "name": "cleffa",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "CLI utility that parses argv and passes it into the default export of a file",
   "main": "dist/index.js",
   "bin": "dist/index.js",
