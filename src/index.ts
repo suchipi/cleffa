@@ -75,9 +75,16 @@ async function cleffa() {
 
   const targetMod = runtime.load(absolutePathToTargetFilePath);
 
-  const mainFn = targetMod.__esModule
-    ? targetMod.default || targetMod.main
-    : targetMod || targetMod.main;
+  let mainFn;
+  if (typeof targetMod === "function") {
+    mainFn = targetMod;
+  } else if (typeof targetMod === "object" && targetMod != null) {
+    if (typeof targetMod.main === "function") {
+      mainFn = targetMod.main;
+    } else if (typeof targetMod.default === "function") {
+      mainFn = targetMod.default;
+    }
+  }
 
   if (typeof mainFn === "function") {
     await mainFn(options, ...positionalArgs);
