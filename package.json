@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "bin": "dist/index.js",
   "scripts": {
-    "build": "rm -rf dist/* && tsc && chmod +x ./dist/index.js"
+    "build": "rm -rf dist/* && tsc && chmod +x ./dist/index.js",
+    "link-self": "cd node_modules/.bin && ln -sf ../../dist/index.js cleffa"
   },
   "keywords": [
     "cli",

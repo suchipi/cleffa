@@ -62,6 +62,11 @@ async function cleffa() {
     throw err;
   }
 
+  // Remove cleffa from argv, making it look like node
+  // is the calling thing. This makes process.argv.slice(2)
+  // work as expected in user code.
+  process.argv.splice(1, 1);
+
   const kameForCurrentNode = kame.configure({
     loader: (filename: string) =>
       kame.defaultLoader.load(filename, { targets: { node: "current" } }),
