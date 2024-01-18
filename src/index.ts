@@ -30,7 +30,7 @@ async function cleffa() {
           "./index.js",
         ]
       : []),
-  ].filter(Boolean);
+  ].filter(Boolean) as Array<string>;
 
   let absolutePathToTargetFilePath: string | null = null;
 
@@ -39,7 +39,7 @@ async function cleffa() {
     try {
       absolutePathToTargetFilePath = kame.defaultResolver.resolve(
         pathToTry,
-        path.join(process.cwd(), "<cleffa-entrypoint>")
+        path.join(process.cwd(), "<cleffa-entrypoint>"),
       );
       break;
     } catch (err) {
@@ -53,7 +53,7 @@ async function cleffa() {
 
   if (absolutePathToTargetFilePath == null) {
     const err = new Error(
-      "Failed to find the target file to load. Please specify it on the command line as a positional argument, eg 'npx cleffa ./my-script.js'."
+      "Failed to find the target file to load. Please specify it on the command line as a positional argument, eg 'npx cleffa ./my-script.js'.",
     );
     Object.assign(err, {
       pathsWeTried: pathsToTry,
@@ -69,7 +69,7 @@ async function cleffa() {
 
   const kameForCurrentNode = kame.configure({
     loader: (filename: string) =>
-      kame.defaultLoader.load(filename, { targets: { node: "current" } }),
+      kame.defaultLoader.load(filename, { target: "es2022" }),
   });
 
   const runtime = new kameForCurrentNode.Runtime();

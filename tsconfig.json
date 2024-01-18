@@ -1,14 +1,14 @@
 {
   "include": ["./src/**/*.ts"],
-  "exclude": ["./**/*.test.ts"],
 
   "compilerOptions": {
-    "lib": ["es2019", "dom"],
-    "target": "es2018",
+    "lib": ["es2021", "dom"],
+    "target": "es2019",
     "module": "CommonJS",
     "outDir": "./dist",
 
     "strict": true,
+    "skipLibCheck": true,
     "noImplicitAny": false,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
@@ -22,6 +22,6 @@
     "downlevelIteration": true,
 
     "moduleResolution": "node",
-    "esModuleInterop": true
-  }
+    "esModuleInterop": true,
+  },
 }
