@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import path from "path";
-import { formatError } from "pretty-print-error";
 import { parseArgv } from "clef-parse";
+import { runMain } from "@suchipi/run-main";
 import * as kame from "kame";
 
 async function cleffa() {
@@ -96,7 +96,4 @@ async function cleffa() {
   }
 }
 
-cleffa().catch((err) => {
-  console.error(formatError(err));
-  process.exit(1);
-});
+runMain(cleffa);

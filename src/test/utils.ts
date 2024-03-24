@@ -1,7 +1,7 @@
 import { RunContext } from "first-base";
 import { Path } from "nice-path";
 
-export const rootDir = new Path(__dirname).dirname().dirname();
+export const rootDir = new Path(__dirname, "../..").normalize();
 
 export function cleanStr(str: string) {
   return str.replaceAll(rootDir.toString(), "<rootDir>");

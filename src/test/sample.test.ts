@@ -6,9 +6,7 @@ test("sample", async () => {
   const run = spawn(
     "npx",
     ["cleffa", "src/test/fixtures/sample.ts", "--blah", "45", "yes"],
-    {
-      cwd: rootDir.toString(),
-    },
+    { cwd: rootDir.toString() },
   );
   await run.completion;
   expect(cleanResult(run.result)).toMatchInlineSnapshot(`
