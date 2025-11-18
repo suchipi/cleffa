@@ -34,7 +34,7 @@
     "nice-path": "^2.0.0",
     "prettier": "^3.2.5",
     "typescript": "^5.4.3",
-    "vitest": "^1.4.0"
+    "vitest": "^4.0.10"
   },
   "repository": {
     "type": "git",
