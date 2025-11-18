@@ -19,10 +19,9 @@ test("sample", async () => {
 
 
       at main (<rootDir>/src/test/fixtures/sample.ts:17:11)
-      at cleffa (<rootDir>/dist/index.js:105:15)
+      at cleffa (<rootDir>/dist/index.js:115:15)
       at runMain (<rootDir>/node_modules/@suchipi/run-main/dist/index.js:28:24)
-      at Object.<anonymous> (<rootDir>/dist/index.js:108:24)
-      at node:internal/main/run_main_module:28:49
+      at Object.<anonymous> (<rootDir>/dist/index.js:118:24)
     ",
       "stdout": "{ options: { blah: 45 }, args: [ 'yes' ] }
     ",

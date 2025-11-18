@@ -28,12 +28,12 @@
   "author": "Lily Skye <me@suchipi.com>",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^20.11.30",
+    "@types/node": "^24.10.1",
     "@types/resolve": "^1.20.6",
-    "first-base": "^1.4.0",
-    "nice-path": "^2.0.0",
-    "prettier": "^3.2.5",
-    "typescript": "^5.4.3",
+    "first-base": "^1.5.2",
+    "nice-path": "^3.1.0",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.3",
     "vitest": "^4.0.10"
   },
   "repository": {
@@ -43,6 +43,6 @@
   "dependencies": {
     "@suchipi/run-main": "^1.0.0",
     "clef-parse": "^0.6.0",
-    "kame": "^0.12.0"
+    "kame": "^1.16.0"
   }
 }
