@@ -67,12 +67,12 @@ async function cleffa() {
   // work as expected in user code.
   process.argv.splice(1, 1);
 
-  const kameForCurrentNode = kame.configure({
+  const kameES2022 = kame.configure({
     loader: (filename: string) =>
       kame.defaultLoader.load(filename, { target: "es2022" }),
   });
 
-  const runtime = new kameForCurrentNode.Runtime();
+  const runtime = new kameES2022.Runtime();
 
   // In case they don't want to use a main function
   global.options = options;
