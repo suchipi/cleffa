@@ -31,7 +31,6 @@
     "@types/node": "^24.10.1",
     "@types/resolve": "^1.20.6",
     "first-base": "^1.5.2",
-    "nice-path": "^3.1.0",
     "prettier": "^3.6.2",
     "typescript": "^5.9.3",
     "vitest": "^4.0.10"
